@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>Queue Management System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body class="bg-secondary-subtle">
+
+
+<!--navbar starts -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">QMS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Queue History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Request A Queue</a>
+          </li>
+          <li class="nav-item dropdown" >
+            <a class="nav-link" href="#">Customer Support</a>
+          </li>
+          <li class="nav-item dropdown" >
+            <a class="nav-link" href="index.html">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                <path d="M7.5 1v7h1V1z"/>
+                <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812"/>
+              </svg>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </div><br>
+  <!--navbar ends-->
+
+<!--profile and logout-->
+<div class="container">
+<div class="container text-center" style="margin-top: 10px;">
+  <div class="row">
+    <div class="col-auto me-auto shadow rounded"  style="background-color: whitesmoke">User : abcd@gmail.com</div>
+    <div class="col-auto"></div>
+  </div>
+</div>
+</div><br>
+<!--profile and logout ends-->
+<!--Heading starts-->
+<div class="container text-center" >
+  <div class="row justify-content-start">
+    <div class="col-4">
+    </div>
+    <div class="col-4 shadow rounded" style="background-color: whitesmoke;margin-top: 10px;">
+      Service Name
+    </div>
+  </div><br>
+
+<!--Heading ends-->
+
+
+<!--Position-->
+<div class="container text-center">
+  
+  <div class="row">
+    <div class="col"></div>
+    <div class="col order-5"></div>
+    <div class="col order-1">
+        <div class="card-body text-primary">
+          <h1 class="card-title shadow p-3 mb-5 bg-body-tertiary rounded" style="font-size: 120px;">14</h1>
+        </div>
+
+        <h1 class="card-title shadow p-3 mb-5 btn btn-outline-danger rounded" style="font-size: 12px;display: block;" onclick="count()" id="countbutton">Request An Emergence</h1>
+        <h1 class="card-title shadow p-3 mb-5 btn btn-outline-danger rounded" style="font-size: 12px;display: none;" id="countdiv">Awaiting Emergency for <div id="count">30</div>seconds</h1>
+    </div>
+  </div>
+</div>
+<!--Position ends-->
+<button data-bs-toggle="modal" data-bs-target="#sorry" id="sorrybutton" style="display: none;"></button>
+
+<!--footer starts -->
+<div class="fixed-bottom bg-warning-subtle">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col order-last">
+        <h6 class="footer">2024 IFM Students</h6>
+      </div>
+      <div class="col">
+        <h6 class="footer">Designed And Developed By </h6>
+      </div>
+      <div class="col order-first">
+        <h6 class="footer">&copy;All right Reserved</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!--footer ends-->
+<!--wait sorry starts-->  
+<div class="modal fade " id="sorry" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow bg-body-tertiary rounded">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sorry ,It seems our service providers are busy right now, please be patient and try requesting another emergency. Thank's</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" >Ok</button>
+      </div>
+    </div>
+  </div>
+</div><br>
+<!--wait sorry ends-->
+
+<script>
+  function count(){
+    countbutton.style.display="none";
+    countdiv.style.display="block";
+    let counting= 30;
+    const count=document.getElementById("count");
+    const intervalId= setInterval(() =>{
+      count.innerText=counting;
+      counting--;
+      if(counting<0){
+      countdiv.style.display="none";
+      countbutton.style.display="block";
+      sorrybutton.click();
+      }
+    },1000);
+
+    setTimeout(()=>{
+      clearInterval(intervalId);
+    },32000)
+  }
+</script>
+
+    </body>
+</html>
